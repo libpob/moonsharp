@@ -101,7 +101,7 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 		};
 
 
-		public const int MAXCCALLS = 500;
+		public int MAXCCALLS = StringOptions.MaximumRecursionDepth;
 		public const char L_ESC = '%';
 		public const string SPECIALS = "^$*+?.([%-";
 
