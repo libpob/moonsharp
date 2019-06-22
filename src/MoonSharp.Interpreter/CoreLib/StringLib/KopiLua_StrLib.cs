@@ -101,7 +101,6 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 		};
 
 
-		public int MAXCCALLS = StringOptions.MaximumRecursionDepth;
 		public const char L_ESC = '%';
 		public const string SPECIALS = "^$*+?.([%-";
 
@@ -546,15 +545,15 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 				}
 				CharPtr s1 = s + init;
 				ms.L = L;
-				ms.matchdepth = MAXCCALLS;
+				ms.matchdepth = StringOptions.MaximumRecursionDepth;
 				ms.src_init = s;
 				ms.src_end = s + l1;
 				do
 				{
 					CharPtr res;
 					ms.level = 0;
-					// LuaAssert(ms.matchdepth == MAXCCALLS);
-					ms.matchdepth = MAXCCALLS;
+					// LuaAssert(ms.matchdepth == StringOptions.MaximumRecursionDepth);
+					ms.matchdepth = StringOptions.MaximumRecursionDepth;
 					if ((res = match(ms, s1, p)) != null)
 					{
 						if (find != 0)
@@ -601,7 +600,7 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 			CharPtr p = auxdata.P;
 			CharPtr src;
 			ms.L = L;
-			ms.matchdepth = MAXCCALLS;
+			ms.matchdepth = StringOptions.MaximumRecursionDepth;
 			ms.src_init = s;
 			ms.src_end = s + ls;
 			for (src = s + auxdata.POS;
@@ -610,8 +609,8 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 			{
 				CharPtr e;
 				ms.level = 0;
-				//LuaAssert(ms.matchdepth == MAXCCALLS);
-				ms.matchdepth = MAXCCALLS;
+				//LuaAssert(ms.matchdepth == StringOptions.MaximumRecursionDepth);
+				ms.matchdepth = StringOptions.MaximumRecursionDepth;
 
 				if ((e = match(ms, src, p)) != null)
 				{
@@ -755,15 +754,15 @@ namespace MoonSharp.Interpreter.CoreLib.StringLib
 								"string/function/table expected");
 			LuaLBuffInit(L, b);
 			ms.L = L;
-			ms.matchdepth = MAXCCALLS;
+			ms.matchdepth = StringOptions.MaximumRecursionDepth;
 			ms.src_init = src;
 			ms.src_end = src + srcl;
 			while (n < max_s)
 			{
 				CharPtr e;
 				ms.level = 0;
-				//LuaAssert(ms.matchdepth == MAXCCALLS);
-				ms.matchdepth = MAXCCALLS;
+				//LuaAssert(ms.matchdepth == StringOptions.MaximumRecursionDepth);
+				ms.matchdepth = StringOptions.MaximumRecursionDepth;
 				e = match(ms, src, p);
 				if (e != null)
 				{
